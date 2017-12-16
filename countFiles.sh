@@ -1,7 +1,7 @@
 #!/bin/bash
 #My First Script
 if ! [ -d "$1" ];then
-	exit -1 
+	exit 1 
 elif [ "$#" -eq 1 ];then
 	my=0
 	for i in "$1"/*
@@ -21,5 +21,5 @@ elif [ "$#" -eq 2 ];then
 	done
 	echo "$my"
 else
-	exit -1
+	exit 1
 fi
