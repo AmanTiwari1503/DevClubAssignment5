@@ -6,6 +6,8 @@ fi
 if ! [ -d "$1" ] || ! [ -d "$2" ]; then
 	exit 1
 fi
+di1="$1"
+di2="$2"
 backup_method()
 {
 dir1="$1"
@@ -13,13 +15,18 @@ for i in "$dir1"/*
 do
 	if [ -d "$i" ]; then
 		backup_method "$i" "$2"
+		
 	fi
 	path1="$i"	
 	file1="$(basename $path1)"	
-	sync_check "$file1" "path1" "$2"
+	sync_check "$file1" "$path1" "$2"
 	local flag=$?
 	if [ "$flag" -ne 1 ]; then
 		cp "$i" "$2"
+		direc=$(basename $"$dir1")
+		if [ "$dir1" != "$di1" ] && [ "$dir1" != "$di2" ]; then
+			echo -n "$direc/"
+		fi
 		echo $file1
 	fi
 done
