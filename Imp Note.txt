@@ -1,0 +1,1 @@
+In script 4, for sub-directories, only the parent directory is printed besides the name of the file being copied.
